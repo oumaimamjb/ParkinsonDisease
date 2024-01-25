@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Record Audio</title>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 20px; /* Ajuster la marge supérieure pour centrer le titre */
+        }
+        img {
+            display: block;
+            margin: 0 auto; /* Centrer l'image */
+            width: 400px; /* Ajuster la largeur de l'image */
+            height: 400px; /* Ajuster la hauteur de l'image */
+            margin-top: 50px; /* Ajuster la marge supérieure de l'image */
+        }
+        .container {
+            margin-top: 50px; /* Ajuster la marge supérieure du conteneur */
+        }
+        #result {
+            display: none;
+            color: white;
+            font-size: 60px;
+        }
+    </style>
+</head>
+<body id="record-section">
+    <h1>Record Audio</h1>
+    <img src="static/signal.jpg" alt="Votre Image">
+
+    <div class="container">
+        <button id="record-button">Start Recording</button>
+        <button id="stop-button" style="display: none;">Stop Recording</button>
+        <div id="result" style="display: none; color: white; font-size: 90px;"></div>
+
+    </div>
+
+    <script>
+        const recordButton = document.getElementById('record-button');
+        const stopButton = document.getElementById('stop-button');
+        const resultDiv = document.getElementById('result');
+    
+        let mediaRecorder;
+        let recordedChunks = [];
+    
+        recordButton.addEventListener('click', async () => {
+            recordButton.style.display = 'none';
+            stopButton.style.display = 'block';
+    
+            // Commencer l'enregistrement audio
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.ondataavailable = event => {
+                        recordedChunks.push(event.data);
+                    };
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(recordedChunks, { type: 'audio/wav' });
+    
+                        // Créer un formulaire pour envoyer l'audio au serveur Flask
+                        const formData = new FormData();
+                        formData.append('audio_data', audioBlob, 'recorded_audio.wav'); // Nommer le fichier en 'recorded_audio.wav'
+    
+                        // Envoyer les données audio au serveur
+                        fetch('/predict_microphone', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            const prediction = data.prediction;
+
+                            if (prediction==0){
+                                resultDiv.innerText = "Vous n'avez pas la maladie de Parkinson";
+                            
+                            }else if (prediction==1){
+                                resultDiv.innerText = "Vous avez la maladie de Parkinson";
+                            }else{
+                                resultDiv.innerText = "Prédiction indéterminée";
+                            }
+                            resultDiv.style.display = 'block';
+                        })
+                        .catch(error => console.error('Error:', error));
+                    };
+                    mediaRecorder.start();
+                })
+                .catch(error => console.error('Error accessing the microphone:', error));
+        });
+    
+        stopButton.addEventListener('click', () => {
+            stopButton.style.display = 'none';
+            recordButton.style.display = 'block';
+    
+            // Arrêter l'enregistrement audio
+            mediaRecorder.stop();
+            recordedChunks = [];
+        });
+    </script>
+    
+</body>
+</html>

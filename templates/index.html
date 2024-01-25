@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkinson</title>
+    <style>
+        /* Styles pour la mise en page, le positionnement des sections et le comportement de scroll */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            scroll-behavior: smooth; /* Effet de défilement fluide */
+            background-color: black;
+        }
+
+        /* Ajoute autant de sections que nécessaire */
+        section {
+            height: 100vh; /* Hauteur d'une section égale à la hauteur de l'écran */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px; /* Espacement intérieur des sections */
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: flex-end; /* Aligner les boutons à droite */
+            gap: 10px; /* Réduit l'espace entre les boutons */
+            background-color: black; /* Couleur de fond de la navigation */
+            padding: 10px; /* Espacement intérieur des boutons */
+            margin-bottom: 20px; /* Espacement entre la navigation et le titre */
+        }
+
+        .scroll-button {
+            font-size: 14px; /* Taille de la police des boutons */
+            background-color: white; /* Couleur de fond des boutons */
+            color: red; /* Couleur du texte */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        h1 {
+    text-align: center;
+    font-size: 40px; /* Taille du titre */
+    font-family: 'Arial', sans-serif; /* Police du titre */
+    color: white; /* Couleur du texte */
+    text-transform: uppercase; /* Mettre en majuscules */
+    margin-bottom: 20px; /* Espacement par rapport aux boutons de navigation */
+    text-decoration: underline;
+}
+
+/* Style pour le titre "Upload Your File and Record Audio" */
+.test-header h2 {
+    text-align: center;
+    font-size: 40px; /* Taille du titre */
+    font-family: 'Arial', sans-serif; /* Police du titre */
+    color: white; /* Couleur du texte */
+    text-transform: uppercase; /* Mettre en majuscules */
+    margin-bottom: 20px; /* Espacement par rapport aux boutons de navigation */
+    text-decoration: underline;
+}
+
+/* Style pour la section "Test" */
+.test-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Espacement entre le titre et le contenu */
+}
+
+/* Style pour l'image */
+.test-content img {
+    width: 500px; /* Ajuste la taille de l'image selon tes besoins */
+    margin-bottom: 20px; /* Espacement entre l'image et les boutons */
+}
+
+/* Style pour les boutons */
+.test-buttons {
+    display: flex;
+}
+
+/* Espace entre les boutons */
+.button-space {
+    width: 20px; /* Ajuste l'espacement entre les boutons */
+}
+
+.sections-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%; /* Ajuste la largeur pour la répartition souhaitée */
+    margin: 0 auto; /* Centre les sections horizontalement */
+}
+
+/* Style pour la partie "Exercices" et "Rappels de Médication" */
+.exercises-header h2,
+.medication-header h2 {
+    color: white;
+    border: 2px solid red;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.exercises-content .exercises-buttons,
+.medication-content .medication-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Styles pour les boutons "Exercices" et "Rappels de Médication" */
+.exercises-content .exercises-buttons button,
+.medication-content .medication-buttons button {
+    margin-right: 10px;
+    padding: 8px 20px;
+    background-color: white;
+    color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Styles pour les images */
+.image1,
+.image2 {
+    width: 300px; /* Largeur souhaitée */
+    height: auto; /* Hauteur automatique pour conserver les proportions */
+    display: block; /* Pour que margin: auto fonctionne */
+    
+    margin-right: auto;
+}
+
+
+/* Style du cadre pour les informations de contact */
+.contact-box {
+    border: 2px solid black;
+    background-color: white;
+    padding: 20px;
+    font-family: 'Palatino', serif;
+    margin-bottom: 20px;
+}
+
+/* Style des informations de contact */
+.contact-details {
+    text-align: left;
+}
+
+/* Style du logo LinkedIn */
+.linkedin img {
+    width: 50px;
+    height: auto;
+    display: block;
+    margin: 10px auto; /* Ajuste la marge autour du logo */
+}
+
+
+
+
+ .image-container {
+    display: flex;
+    justify-content: center; /* Centrer horizontalement les images */
+    margin-bottom: 20px; /* Espacement entre les images et le titre */
+}
+
+/* Styles pour chaque image */
+.image-container img {
+    width: 20; /* Ajuste la largeur des images selon tes besoins */
+    margin: 10px; /* Espacement entre les deux images */
+}
+
+/* Style du cadre pour le contenu "About Us" */
+.about-content {
+    border: 2px solid black; /* Bordure de 2 pixels solide noire */
+    background-color: white; /* Couleur de fond blanche */
+    padding: 20px; /* Espacement intérieur du cadre */
+    text-align: center; /* Centrer le texte à l'intérieur du cadre */
+    font-family: 'Palatino', serif; /* Police Palatino */
+}
+
+    </style>
+
+    <!-- Script pour les notifications -->
+     <script>
+        // Vérification de la disponibilité de la fonction de notifications
+        if (!("Notification" in window)) {
+            alert("Ce navigateur ne supporte pas les notifications desktop");
+        }
+
+        // Fonction pour demander la permission d'envoi de notifications
+        function requestNotificationPermission() {
+            Notification.requestPermission().then(function (result) {
+                if (result !== 'granted') {
+                    alert('Les notifications ne sont pas autorisées.');
+                }
+            });
+        }
+
+        // Fonction pour créer une notification de rappel de médication
+        function createMedicationReminder() {
+            // Vérifier si les notifications sont autorisées
+            if (Notification.permission !== 'granted') {
+                alert('Veuillez autoriser les notifications pour utiliser cette fonctionnalité.');
+                return;
+            }
+
+            // Créer la notification
+            var medicationNotification = new Notification('Rappel de médication', {
+                body: 'N\'oubliez pas de prendre vos médicaments.',
+                icon: 'path_to_icon.png' // Remplacez ceci par le chemin de votre icône
+            });
+
+            // Définir une action à effectuer lors du clic sur la notification
+            medicationNotification.onclick = function () {
+                alert('Prenez vos médicaments maintenant.');
+            };
+        }
+    </script>
+</head>
+<body>
+    <body>
+        <!-- Navigation avec des boutons pour chaque section -->
+        <nav>
+            <button class="scroll-button" onclick="scrollToSection('aboutUs')">About Us</button>
+            <button class="scroll-button" onclick="scrollToSection('test')">Test</button>
+            <button class="scroll-button" onclick="scrollToSection('breathToBeFine')">BreathToBeFine</button>
+            <button class="scroll-button" onclick="scrollToSection('contactUs')">Contact Us</button>
+        </nav>
+    
+        <!-- Titre de la page -->
+        <h1>ParkinsonCare Hub</h1>
+    
+        <div class="image-container">
+            <img class="parkinson-image1" src="static/PD-MAN.jpg" alt="Image 1">
+            
+        </div>
+        
+        <style>
+            /* ... (les styles existants) */
+        
+            /* Styles pour les images après le titre ParkinsonCare Hub */
+            .parkinson-image1,
+            .parkinson-image2 {
+                max-width: 500px; /* Largeur maximale des images */
+                height: auto; /* Hauteur automatique pour conserver les proportions */
+                display: block; /* Pour que margin: auto fonctionne */
+                margin: 10px; /* Espacement entre les images */
+            }
+        </style>
+    <!-- Section "About Us" -->
+<!-- Section "About Us" -->
+<section id="aboutUs">
+    <h1>About Us</h1>
+    <div class="about-content">
+        <p>
+            ParkinsonCare Hub est une plateforme dédiée à la détection précoce de la maladie de Parkinson.
+            Notre mission est d'offrir aux patients et aux professionnels de la santé un outil novateur basé sur l'analyse audio pour détecter les signes précoces de la maladie.
+            Avec une approche centrée sur l'innovation, nous combinons la technologie et la santé pour offrir des solutions intelligentes qui font avancer la santé.
+
+            Notre équipe est composée d'experts en neurologie, en intelligence artificielle et en soins de santé qui travaillent ensemble pour améliorer le diagnostic et le traitement de la maladie de Parkinson.
+            Chez ParkinsonCare Hub, nous croyons en l'importance de la collaboration et de l'accessibilité aux soins de santé avancés.
+            Notre engagement est de rendre la technologie accessible à tous et de créer un impact positif dans la vie des personnes touchées par la maladie de Parkinson.
+        </p>
+
+        </p>
+    </div>
+</section>
+<hr>
+
+
+ <!-- Section "Test" -->
+<!-- Section "Test" -->
+<section id="test">
+    <div class="test-content">
+        <h2 style="text-align: center;">Detecteur de Parkinson: Votre Voix, Votre Santé.</h2>
+        <img src="static/pic.jpeg" alt="abcMD" style="max-width: 500px;">
+        <p style="text-align: center;">Vérifiez la maladie de Parkinson: Enregistrez votre voix, connaissez votre santé.</p>
+        <div class="test-buttons">
+            <button onclick="location.href='/upload'" style="margin-right: 10px; padding: 8px 20px;">Upload Your File</button>
+            <button onclick="location.href='/record'" style="padding: 8px 20px;">Record Audio</button>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+
+<section id="breathToBeFine" class="breath-section">
+    <h1 style="text-align: center;">BreathToBeFine</h1>
+
+    <div class="sections-container">
+        <div class="exercises-section">
+            <div class="exercises-header">
+                <h2>Exercices</h2>
+                <img class="image2" src="static/WhatsApp Image 2023-12-20 at 22.56.56.jpeg" alt="">
+            </div>
+            <div class="exercises-content">
+                <button><a href="https://www.youtube.com/watch?v=79ECvQmUfzQ">Exercice 1</a></button>
+                <span class="button-space"></span>
+                <button><a href="https://www.youtube.com/watch?v=Dy2l7qLXhyA">Exercice 2</a></button>
+            </div>
+        </div>
+
+        <div class="medication-section">
+            <div class="medication-header">
+                <h2>Rappels de Médication</h2>
+                <img class="image1" src="static/med1.jpg" alt="">
+            </div>
+            <div class="medication-content">
+                <button onclick="requestNotificationPermission()">Autoriser les notifications</button>
+                <span class="button-space"></span>
+                <button onclick="createMedicationReminder()">Rappel de médication</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+
+
+   <!-- Section "Contact Us" -->
+<section id="contactUs">
+    <h1>Contact Us</h1>
+    <div class="contact-content">
+        <div class="contact-box">
+            <h3>Contact Information</h3>
+            <div class="contact-details">
+                <p>Phone: +212 657265854</p>
+                <p>Email: <a href="mailto:oumaimamoujib1132@gmail.com">oumaimamoujib1132@gmail.com</a></p>
+                <div class="linkedin">
+                    <a href="https://www.linkedin.com/in/oumaima-moujib-87b459244/" target="_blank">
+                        <!-- Ajoute le logo LinkedIn -->
+                        <img src="static/linkedin_logo_square_icon_134016.png" alt="LinkedIn">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- Script pour le scroll fluide -->
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

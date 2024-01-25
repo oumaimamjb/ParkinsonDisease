@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        #back-link {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Résultat de la prédiction:</h1>
+    <img src="static/mri-img.jpg" alt="Image" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+    <div id="result">
+        {% if prediction == 1 %}
+            La personne est identifiée comme étant atteinte de la maladie de Parkinson.
+        {% else %}
+            La personne est identifiée comme étant en bonne santé.
+        {% endif %}
+    </div>
+    <a href="/" id="back-link">Retour à l'accueil</a>
+</body>
+</html>

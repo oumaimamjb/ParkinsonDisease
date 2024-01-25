@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Audio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            text-align: center;
+            padding-top: 50px; /* Adjusted padding for better image placement */
+        }
+
+        #upload-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px; /* Added margin to separate form from image */
+        }
+
+        #file-input {
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        #upload-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #center-image {
+            width: 200px; /* Adjust the width of the image as needed */
+            height: auto; /* To maintain aspect ratio */
+            margin-bottom: 20px; /* Added margin for spacing */
+        }
+    </style>
+</head>
+<body id="upload-section">
+    <h1>Upload Audio</h1>
+    <img src="static/signal.jpg" alt="Image Description" id="center-image"> <!-- Replace 'path_to_your_image.jpg' with the actual path to your image -->
+    <form id="upload-form" action="/result" method="post" enctype="multipart/form-data">
+        <input type="file" id="file-input" name="file_data" accept="audio/*" required>
+        <button id="upload-button" type="submit">Upload</button>
+    </form>
+</body>
+</html>
