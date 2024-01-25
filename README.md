@@ -5,6 +5,9 @@ Loaded audio files from healthy individuals and those with Parkinson's disease. 
 Generated spectrograms for better frequency representation in audio signals.
 ![Picture1](https://github.com/oumaimamjb/ParkinsonDisease/assets/121728355/0f7af657-75b9-48a1-96a3-18bd7f56de45)
 
+![Picture2](https://github.com/oumaimamjb/ParkinsonDisease/assets/121728355/ba6562cb-5e16-475b-a892-c8a228d65f8d)
+
+
 
 🔊 Noise Reduction using Median Filtering:
 Applied median filtering to reduce noise in audio signals, enhancing the quality.
