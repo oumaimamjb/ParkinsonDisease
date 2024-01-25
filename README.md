@@ -12,6 +12,9 @@ Generated spectrograms for better frequency representation in audio signals.
 🔊 Noise Reduction using Median Filtering:
 Applied median filtering to reduce noise in audio signals, enhancing the quality.
 
+![Picture3](https://github.com/oumaimamjb/ParkinsonDisease/assets/121728355/2398ed90-241f-4e1d-84fd-462520d08376)
+
+
 🎚️ Extraction of Multiple Audio Features:
 Extracted various features, including MFCC, Chroma, Spectral Centroid, Zero Crossing Rate, Spectral Rolloff, Tonnetz, Spectral Contrast, Pitch, and Jitter.
 
