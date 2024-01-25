@@ -1,6 +1,9 @@
 🔍 Audio Loading and Visualization:
 Loaded audio files from healthy individuals and those with Parkinson's disease. Visualized waveforms to get an overview.
 
+![Picture6](https://github.com/oumaimamjb/ParkinsonDisease/assets/121728355/22d00d3c-c844-437b-bf29-2c9880136fc8)
+
+
 🎶 Spectrogram Creation:
 Generated spectrograms for better frequency representation in audio signals.
 ![Picture1](https://github.com/oumaimamjb/ParkinsonDisease/assets/121728355/0f7af657-75b9-48a1-96a3-18bd7f56de45)
