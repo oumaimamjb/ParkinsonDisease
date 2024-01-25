@@ -29,3 +29,6 @@ Trained multiple models (including Linear Regression, Random Forest, SVM, XGBoos
 
 🚀 Web Application with Flask:
 Developed a user-friendly web application using Flask, HTML, CSS, and JavaScript. Users can record their voices, and the application provides predictions regarding Parkinson's disease based on the trained models.
+
+![parkinsonhubcare](https://github.com/oumaimamjb/ParkinsonDisease/assets/121728355/67591466-ef37-46b5-8128-278eb7fb8d8e)
+
